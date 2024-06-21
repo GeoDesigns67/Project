@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Limit</title>
+    <link rel="stylesheet" href="project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Word Limit Textarea</h1>
+        <label for="textarea">Enter your text:</label>
+        <textarea id="textarea" placeholder="Type here..." aria-describedby="word-count" maxlength="600"></textarea>
+        <div id="word-count-container">
+            <p id="word-count">Words: 0</p>
+            <p id="word-limit">Word Limit: 100</p>
+        </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const textarea = document.getElementById('textarea');
+    const wordCountDisplay = document.getElementById('word-count');
+
+    textarea.addEventListener('input', () => {
+        let words = textarea.value.trim().split(/\s+/);
+        if (words[0] === '') words = [];
+
+        if (words.length > 100) {
+            words = words.slice(0, 100);
+            textarea.value = words.join(' ');
+        }
+
+        wordCountDisplay.textContent = `Words: ${words.length}`;
+    });
+});
+
+
+    </script>
+</body>
+
+</html>
